@@ -1,0 +1,73 @@
+name: language-tl
+version: 0.1.0
+github: "poscat0x04/language-tl"
+license: BSD3
+author: Poscat
+maintainer: poscat@mail.poscat.moe
+copyright: "(c) 2020 Poscat"
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description: Please see the README on GitHub at <https://github.com/poscat0x04/language-tl#readme>
+
+dependencies:
+  - base >= 4.10 && < 5
+  - bytestring
+  - text
+  - lens
+  - deepseq
+  - megaparsec
+  - prettyprinter
+
+default-extensions:
+  - OverloadedStrings
+  - FlexibleInstances
+  - FlexibleContexts
+  - FunctionalDependencies
+  - InstanceSigs
+  - ConstraintKinds
+  - DeriveGeneric
+  - DeriveFunctor
+  - DeriveFoldable
+  - DeriveTraversable
+  - TypeOperators
+  - TypeApplications
+  - TypeFamilies
+  - KindSignatures
+  - PartialTypeSignatures
+  - DataKinds
+  - StarIsType
+  - ScopedTypeVariables
+  - ExplicitForAll
+  - ViewPatterns
+  - BangPatterns
+  - LambdaCase
+  - TupleSections
+  - EmptyCase
+  - MultiWayIf
+  - UnicodeSyntax
+  - PatternSynonyms
+  - RecordWildCards
+
+library:
+  source-dirs: src
+
+tests:
+  language-tl-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - language-tl
