@@ -17,11 +17,11 @@ orUnderscore p = try normal <|> underscore
 
 ---------
 
-program :: Parser [AnnDecl]
+program :: Parser Program
 program = do
   h <- constrDecls
   dl <- many $ fun <|> ty
-  pure $ h <> concat dl
+  pure $ h : dl
   where
     fun = do
       string "---functions---"
@@ -30,11 +30,11 @@ program = do
       string "---types---"
       constrDecls
 
-constrDecls :: Parser [AnnDecl]
-constrDecls = many' annDecl
+constrDecls :: Parser DeclBlock
+constrDecls = TypeDeclBlk <$> many' annDecl
 
-funDecls :: Parser [AnnDecl]
-funDecls = many' annDecl
+funDecls :: Parser DeclBlock
+funDecls = FunDeclBlk <$> many' annDecl
 
 annDecl :: Parser AnnDecl
 annDecl = do

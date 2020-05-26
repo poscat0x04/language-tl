@@ -43,6 +43,13 @@ data Ident
       }
   deriving (Show, Eq, Generic, NFData)
 
+data DeclBlock
+  = FunDeclBlk [AnnDecl]
+  | TypeDeclBlk [AnnDecl]
+  deriving (Show, Eq, Generic, NFData)
+
+type Program = [DeclBlock]
+
 data AnnDecl
   = AnnDecl [Comment] Decl
   deriving (Show, Eq, Generic, NFData)
