@@ -21,6 +21,7 @@ description: Please see the README on GitHub at <https://github.com/poscat0x04/l
 
 dependencies:
   - base >= 4.10 && < 5
+  - aeson
   - containers
   - bytestring
   - text
