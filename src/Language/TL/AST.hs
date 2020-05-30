@@ -150,8 +150,8 @@ data ADT
       }
   deriving (Show, Eq, Generic)
 
-data Function
-  = Function Ann Combinator
+newtype Function
+  = Function Combinator
   deriving (Show, Eq, Generic)
 
 data Type
