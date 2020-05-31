@@ -22,14 +22,13 @@ description: Please see the README on GitHub at <https://github.com/poscat0x04/l
 
 dependencies:
   - base >= 4.10 && < 5
-  - aeson
-  - containers
-  - bytestring
-  - text
-  - lens
-  - deepseq
-  - megaparsec
-  - prettyprinter
+  - aeson >= 1.4.7 && < 1.5.2
+  - containers ^>= 0.6.2.1
+  - bytestring ^>= 0.10.10.0
+  - text ^>= 1.2.4.0
+  - lens >= 4.18 && < 4.20
+  - deepseq ^>= 1.4.4.0
+  - megaparsec ^>= 8.0.0
 
 default-extensions:
   - OverloadedStrings
