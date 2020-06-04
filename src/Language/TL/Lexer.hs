@@ -20,13 +20,6 @@ sc =
     (L.skipLineComment "//")
     (L.skipBlockComment "/*" "*/")
 
-sc' :: Parser ()
-sc' =
-  L.space
-    space1
-    empty
-    empty
-
 many :: Parser a -> Parser [a]
 many = many' . lexeme
 
@@ -47,9 +40,6 @@ optional' v = Just <$> try v <|> pure Nothing
 
 lexeme :: Parser a -> Parser a
 lexeme = (sc >>)
-
-lexeme' :: Parser a -> Parser a
-lexeme' = (sc' >>)
 
 string_ :: Text -> Parser Text
 string_ = lexeme . string
