@@ -12,8 +12,8 @@ extra-source-files:
   - test/data/*
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
+synopsis: A Parser for the Type Language
+category: Language
 
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
