@@ -29,6 +29,7 @@ dependencies:
   - lens >= 4.18 && < 4.20
   - deepseq ^>= 1.4.4.0
   - megaparsec ^>= 8.0.0
+  - QuickCheck
 
 default-extensions:
   - OverloadedStrings

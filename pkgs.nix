@@ -6,4 +6,6 @@ pkgs: with pkgs; [
   megaparsec
   deepseq
   criterion
+
+  QuickCheck
 ]
