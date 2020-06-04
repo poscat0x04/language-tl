@@ -8,9 +8,10 @@ where
 
 import Data.Aeson
 import Data.Text (pack, unpack)
+import Test.QuickCheck
 
 newtype I64 = I64 {unI64 :: Int}
-  deriving newtype (Show, Read, Eq, Num, Ord, Real, Bounded)
+  deriving newtype (Show, Read, Eq, Num, Ord, Real, Bounded, Arbitrary)
 
 instance FromJSON I64 where
   parseJSON =
