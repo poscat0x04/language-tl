@@ -20,6 +20,8 @@ let
       ormolu
       hlint
       hpack
+    ] ++ [
+      hPkgs.ghcide
     ];
   };
 
