@@ -22,10 +22,3 @@ cabal.project.local
 cabal.project.local~
 .HTF/
 .ghc.environment.*
-
-# vscode-ghc-simple repl target-dir
-.repl-build
-
-# favors hpack over plain cabal
-*.cabal
-

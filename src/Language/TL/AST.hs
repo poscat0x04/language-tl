@@ -1,3 +1,4 @@
+{-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE StrictData #-}
 
@@ -118,14 +119,13 @@ argsConv doc (T.NamedList l _ t) =
         ids
 argsConv _ T.Unnamed {} = error "unnamed argument"
 
-data Combinator
-  = Combinator
-      { ident :: Text,
-        ann :: Maybe Text,
-        args :: [Arg],
-        resType :: Type
-      }
-  deriving (Show, Eq, Generic)
+data Combinator = Combinator
+  { ident :: Text,
+    ann :: Maybe Text,
+    args :: [Arg],
+    resType :: Type
+  }
+  deriving stock (Show, Eq)
 
 combArity :: Combinator -> Int
 combArity Combinator {..} =
@@ -142,34 +142,32 @@ combName Combinator {..} =
     TypeApp (Type t) _ -> t
     TypeApp _ _ -> error "combinator is not an ADT"
 
-data ADT
-  = ADT
-      { name :: Text,
-        ann :: Ann,
-        constructors :: [Combinator]
-      }
-  deriving (Show, Eq, Generic)
+data ADT = ADT
+  { name :: Text,
+    ann :: Ann,
+    constructors :: [Combinator]
+  }
+  deriving stock (Show, Eq)
 
 newtype Function
   = Function Combinator
-  deriving (Show, Eq, Generic)
+  deriving stock (Show, Eq)
 
 data Type
   = Type Text
   | TypeApp Type [Type]
   | NatType
-  deriving (Show, Eq, Generic)
+  deriving stock (Show, Eq)
 
 data Term
   = Var Text
   | Nat Int
   | App Term [Term]
-  deriving (Show, Eq, Generic)
+  deriving stock (Show, Eq)
 
-data Arg
-  = Arg
-      { argName :: Text,
-        ann :: Ann,
-        argType :: Type
-      }
-  deriving (Show, Eq, Generic)
+data Arg = Arg
+  { argName :: Text,
+    ann :: Ann,
+    argType :: Type
+  }
+  deriving stock (Show, Eq)

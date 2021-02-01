@@ -1,0 +1,85 @@
+cabal-version:      3.0
+name:               language-tl
+version:            0.1.1
+synopsis:           A Parser for the Type Language
+description:        A Parser for the Type Language
+category:           Language
+homepage:           https://github.com/poscat0x04/language-tl#readme
+bug-reports:        https://github.com/poscat0x04/language-tl/issues
+author:             Poscat
+maintainer:         poscat@mail.poscat.moe
+copyright:          (c) 2020 - 2021 Poscat
+license:            BSD-3-Clause
+license-file:       LICENSE
+extra-source-files:
+  CHANGELOG.md
+  README.md
+  test/data/td_api.tl
+
+source-repository head
+  type:     git
+  location: https://github.com/poscat0x04/language-tl
+
+common common-attrs
+  build-depends:
+    , aeson        >=1.4.7 && <1.6
+    , base         >=4.10  && <5
+    , bytestring   >=0.10  && <0.12
+    , containers   ^>=0.6
+    , megaparsec   ^>=9.0
+    , optics-core
+    , optics-th
+    , text         ^>=1.2.4
+
+  default-language:   Haskell2010
+  default-extensions:
+    BangPatterns
+    ConstraintKinds
+    DataKinds
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveTraversable
+    EmptyCase
+    ExplicitForAll
+    FlexibleContexts
+    FlexibleInstances
+    FunctionalDependencies
+    InstanceSigs
+    KindSignatures
+    LambdaCase
+    MultiWayIf
+    OverloadedStrings
+    PartialTypeSignatures
+    PatternSynonyms
+    RecordWildCards
+    ScopedTypeVariables
+    StarIsType
+    StrictData
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    UnicodeSyntax
+    ViewPatterns
+
+library
+  import:          common-attrs
+  exposed-modules:
+    Language.TL.AST
+    Language.TL.Comment
+    Language.TL.I64
+    Language.TL.Lexer
+    Language.TL.Parser
+    Language.TL.Types
+
+  other-modules:
+  hs-source-dirs:  src
+
+test-suite language-tl-test
+  import:         common-attrs
+  type:           exitcode-stdio-1.0
+  main-is:        Spec.hs
+  other-modules:
+  hs-source-dirs: test
+  build-depends:  QuickCheck

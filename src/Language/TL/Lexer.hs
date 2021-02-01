@@ -28,6 +28,7 @@ where
 
 import Control.Applicative (liftA2)
 import Data.Char
+import Data.Functor
 import Data.List.NonEmpty (NonEmpty (..))
 import Data.Text (Text, cons)
 import Data.Void
@@ -100,10 +101,11 @@ blockComment = do
 blockCommentBody :: Parser Text
 blockCommentBody = do
   c <- takeWhileP (Just "Block comment content") (/= '*')
-  c' <- (string "*/" *> pure "") <|> do
-    ch <- char '*'
-    bc <- blockCommentBody
-    pure (cons ch bc)
+  c' <-
+    (string "*/" $> "") <|> do
+      ch <- char '*'
+      bc <- blockCommentBody
+      pure (cons ch bc)
   pure (c <> c')
 
 -- | Parses line comment
