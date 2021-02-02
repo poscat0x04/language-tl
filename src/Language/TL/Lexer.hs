@@ -27,6 +27,7 @@ module Language.TL.Lexer
 where
 
 import Control.Applicative (liftA2)
+import qualified Control.Applicative as A
 import Data.Char
 import Data.Functor
 import Data.List.NonEmpty (NonEmpty (..))
@@ -69,7 +70,7 @@ optional = optional' . lexeme
 
 -- | @optional@ that backtracks
 optional' :: Parser a -> Parser (Maybe a)
-optional' v = Just <$> try v <|> pure Nothing
+optional' v = A.optional (try v)
 
 -- | Removes whitespaces and comments before parsing
 lexeme :: Parser a -> Parser a
@@ -104,8 +105,7 @@ blockCommentBody = do
   c' <-
     (string "*/" $> "") <|> do
       ch <- char '*'
-      bc <- blockCommentBody
-      pure (cons ch bc)
+      cons ch <$> blockCommentBody
   pure (c <> c')
 
 -- | Parses line comment
@@ -190,21 +190,15 @@ lcFullIdent = do
 
 -- | Consumes keyword @Final@
 finalKw :: Parser ()
-finalKw = do
-  string "Final"
-  pure ()
+finalKw = string "Final" $> ()
 
 -- | Consumes keyword @New@
 newKw :: Parser ()
-newKw = do
-  string "New"
-  pure ()
+newKw = string "New" $> ()
 
 -- | Consumes keyword @Empty@
 emptyKw :: Parser ()
-emptyKw = do
-  string "Empty"
-  pure ()
+emptyKw = string "Empty" $> ()
 
 -- | Parses a natural number
 nat :: Parser Int

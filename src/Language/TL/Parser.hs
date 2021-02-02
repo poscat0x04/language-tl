@@ -21,6 +21,7 @@ program :: Parser Program
 program = do
   h <- constrDecls
   dl <- many $ fun <|> ty
+  takeRest
   pure $ h : dl
   where
     fun = do
@@ -38,7 +39,7 @@ funDecls = FunDeclBlk <$> many' annDecl
 
 annDecl :: Parser AnnDecl
 annDecl = do
-  comments <- many' $ space >> comment
+  comments <- many' $ space *> comment
   d <- lexeme decl
   pure $ AnnDecl comments d
 
@@ -74,7 +75,7 @@ term =
     <|> try typeIdent'
     <|> try varIdent'
     <|> try natConst'
-    <|> try term'
+    <|> term'
   where
     expr' =
       Expr
@@ -227,7 +228,7 @@ partialTypeAppDecl = try juxtaposition <|> explicit
     explicit = do
       ident <- boxedTypeIdent
       char_ '<'
-      exprs <- lexeme $ sepBy1 (expr) (char ',')
+      exprs <- lexeme $ sepBy1 expr (char ',')
       char_ '>'
       char_ ';'
       pure $ Explicit ident exprs
@@ -241,7 +242,7 @@ partialCombAppDecl = do
 -----------------------------
 
 finalDecl :: Parser FinalDecl
-finalDecl = try new <|> try final <|> empty
+finalDecl = try new <|> final
   where
     new =
       New
