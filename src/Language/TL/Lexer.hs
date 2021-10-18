@@ -8,6 +8,7 @@ module Language.TL.Lexer
     optional,
     lexeme,
     sepBy1,
+    sc,
 
     -- * Tokenizing
     string_,

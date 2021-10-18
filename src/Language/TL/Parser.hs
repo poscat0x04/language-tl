@@ -21,7 +21,7 @@ program :: Parser Program
 program = do
   h <- constrDecls
   dl <- many $ fun <|> ty
-  takeRest
+  sc
   pure $ h : dl
   where
     fun = do
