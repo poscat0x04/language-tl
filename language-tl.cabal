@@ -84,4 +84,4 @@ test-suite language-tl-test
   hs-source-dirs: test
   build-depends:
     , language-tl
-    , QuickCheck
+    , megaparsec ^>= 9.0
