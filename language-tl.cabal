@@ -7,7 +7,7 @@ category:           Language
 homepage:           https://github.com/poscat0x04/language-tl#readme
 bug-reports:        https://github.com/poscat0x04/language-tl/issues
 author:             Poscat
-maintainer:         poscat@mail.poscat.moe
+maintainer:         poscat@poscat.moe
 copyright:          (c) 2020 - 2021 Poscat
 license:            BSD-3-Clause
 license-file:       LICENSE
@@ -82,4 +82,6 @@ test-suite language-tl-test
   main-is:        Spec.hs
   other-modules:
   hs-source-dirs: test
-  build-depends:  QuickCheck
+  build-depends:
+    , language-tl
+    , QuickCheck
