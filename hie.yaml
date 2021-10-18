@@ -1,3 +1,6 @@
 cradle:
   cabal:
-    component: "language-tl"
+    - path: "./src"
+      component: "lib:language-tl"
+    - path: "./test"
+      component: "test:language-tl-test"
