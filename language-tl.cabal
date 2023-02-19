@@ -22,11 +22,11 @@ source-repository head
 
 common common-attrs
   build-depends:
-    , aeson        >=1.4.7 && <1.6
+    , aeson        >=1.4.7
     , base         >=4.10  && <5
     , bytestring   >=0.10  && <0.12
     , containers   ^>=0.6
-    , megaparsec   ^>=9.0
+    , megaparsec   >= 8.0.0
     , optics-core
     , optics-th
     , text         ^>=1.2.4
